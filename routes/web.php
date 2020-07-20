@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
+
+Route::get('/contact','ContactController@index');
+
+Route::post('/contact', 'ContactController@send');
 
 Auth::routes();
 
