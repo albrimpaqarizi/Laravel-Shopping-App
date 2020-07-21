@@ -102,7 +102,7 @@
                             <div class="col-md-6">
 
                                 <input type="file" class="form-control-file @error('image') is-invalid @enderror"
-                                    name="image" id="image" required aria-describedby="fileHelp">
+                                    name="image" id="image" required aria-describedby="fileHelp" multiple>
                                 <small id="fileHelp" class="form-text text-muted">Please Choose file</small>
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">

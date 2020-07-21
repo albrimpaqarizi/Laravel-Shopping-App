@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\ArticleCategory;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 
 class ArticleController extends Controller
@@ -46,13 +48,22 @@ class ArticleController extends Controller
             'description'=>'required',
             'price'=>'required',
             'inStock'=>'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'required|file|image|mimes:jpeg,png,gif,jpg|max:2048'
         ]);
 
         if($request->hasFile('image')){
-            $filename = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('uploads', $filename);
+            $file = $request->file('image');
+            $fileName = time().'.'.$file->getClientOriginalName();           
+            $filePath = $file->store('images');
         }
+        
+        // if($request->hasFile('image')) {
+        //     $image       = $request->file('image');
+        //     $filename    = $image->getClientOriginalName();
+        //     $image_resize = Image::make($image->getRealPath());              
+        //     $image_resize->resize(300, 200);
+        //     $image_resize->save(public_path('storage/images/' .$filename));
+        // }
 
         $article = new Article([
             'title' => $request->get('title'),
@@ -60,7 +71,7 @@ class ArticleController extends Controller
             'description' => $request->get('description'),
             'price' => $request->get('price'),
             'inStock' => $request->get('inStock'),
-            'image' => $filename,
+            'image' => $filePath,
         ]);
         $article->save();
         return redirect('/articles')->with('success', 'Article saved!');
@@ -106,14 +117,26 @@ class ArticleController extends Controller
             'description'=>'required',
             'price'=>'required',
             'inStock'=>'required',
+            'image' => 'file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ]);
-        
+
         $article = Article::find($id);
         $article->title = $request->get('title');
         $article->category_id = $request->get('category_id');
         $article->description = $request->get('description');
         $article->price = $request->get('price');
         $article->inStock = $request->get('inStock');
+       
+        if($request->hasFile('image')){
+            Storage::delete($article->image);
+            $file = $request->file('image');
+            $fileName = time().'.'.$file->getClientOriginalName();
+            $filePath = $file->store('images');
+            $article->image = $filePath;
+        } else {
+            $article->image;
+        }
+
         $article->save();
         return redirect('/articles')->with('success', 'Article update!');
     }
@@ -127,6 +150,9 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
+        $image_path = $article->image;
+        Storage::delete($image_path);
+
         $article -> delete();
 
         return redirect('/articles') ->with('success','Article deleted!');
