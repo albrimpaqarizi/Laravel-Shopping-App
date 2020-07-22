@@ -25,6 +25,7 @@ Route::get('/', function () {
 // });
 
 Route::get('/contact','ContactController@index');
+Route::get('/','LandingPageController@index');
 
 Route::post('/contact', 'ContactController@send');
 
