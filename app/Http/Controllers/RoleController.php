@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -13,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('users.roles.index', compact('roles'));
     }
 
     /**
@@ -23,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.roles.create');
     }
 
     /**
@@ -34,7 +36,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'role_name'=>'required'
+        ]);
+
+        $role = Role::create($storeData);
+        return redirect('/roles')->with('success', 'Role has been saved!');
     }
 
     /**
@@ -45,7 +52,8 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        return view('users.roles.show', compact('role'));
     }
 
     /**
@@ -56,7 +64,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        return view('users.roles.edit', compact('role'));
     }
 
     /**
@@ -68,7 +77,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'role_name'=>'required|max:255'
+        ]);
+
+        Role::find($id)->update($updateData);
+
+        return redirect('/roles')->with('success', 'Role has been updated!');
     }
 
     /**
@@ -79,6 +94,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role -> delete();
+
+        return redirect('/roles') ->with('success','Role has been deleted!');
     }
 }
