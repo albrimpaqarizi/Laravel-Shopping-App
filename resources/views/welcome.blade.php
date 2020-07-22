@@ -118,7 +118,7 @@
                     <div class="card-body">
                     <h5 class="card-title">{{ $product->title }}:    ${{ $product->price }}</h5>
                     <p class="card-text">{{ $product->description }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             @endforeach
