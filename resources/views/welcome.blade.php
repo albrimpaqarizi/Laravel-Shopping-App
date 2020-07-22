@@ -9,7 +9,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Styles -->
     <style>
@@ -65,10 +66,11 @@
             margin-bottom: 30px;
         }
 
-        .card{
+        .card {
             margin: 5px;
         }
-        img{
+
+        img {
             width: 300px;
             height: 200px;
         }
@@ -82,6 +84,7 @@
         <div class="top-right links">
             <a href="{{ url('/articles') }}">Articles</a>
             <a href="{{ url('/categories') }}">Categories</a>
+            <a href="{{ url('/roles') }}">Roles</a>
             @auth
             <a href="{{ url('/home') }}">Home</a>
             @else
@@ -111,19 +114,19 @@
             </div>
         </div> --}}
 
-        
-            @foreach ($products as $product)
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ url('/'.$product->image) }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ $product->title }}:    ${{ $product->price }}</h5>
-                    <p class="card-text">{{ $product->description }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            @endforeach
-            
+
+        @foreach ($products as $product)
+        <div class="card" style="width: 18rem;">
+            <img src="{{ asset('storage/'.$product->image) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ $product->title }}: ${{ $product->price }}</h5>
+                <p class="card-text">{{ $product->description }}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
+        @endforeach
+
+    </div>
     </div>
 </body>
 
