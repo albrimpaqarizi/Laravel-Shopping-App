@@ -26,7 +26,6 @@ use App\Mail\ContactMail;
 
 Route::get('/contact','ContactController@index');
 Route::get('/','LandingPageController@index');
-Route::get('/{product}','LandingPageController@show')->name('product.show');
 
 Route::post('/contact', 'ContactController@send');
 
