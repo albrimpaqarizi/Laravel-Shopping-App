@@ -41,13 +41,14 @@
       font-weight: bold;
     }
   </style>
+    @if($article)
     <div class="product-box">
         <div class="product-image">
-            <img src="{{ asset('storage/'.$product->image) }}" alt="">
+            <img src="{{ asset('storage/'.$article->image) }}" alt="">
         </div>
         <div class="product-info">
-            <h2 class="product-title">{{ $product->title }}</h2>
-            <span class="product-price">€ {{ $product->price }}</span>
+            <h2 class="product-title">{{ $article->title }}</h2>
+            <span class="product-price">€ {{ $article->price }}</span>
             <div>
                 <button class="btn btn-success">
                     Buy Now
@@ -59,5 +60,6 @@
                 </button>
             </div>
         </div>
-    </div>   
+    </div>
+    @endif   
 @endsection

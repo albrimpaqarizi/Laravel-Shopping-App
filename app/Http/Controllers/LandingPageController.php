@@ -23,6 +23,6 @@ class LandingPageController extends Controller
     {
         $product = Article::find($id);
 
-        return view('articledetails')->with('product', $product);
+        return view('articles.show')->with('product', $product);
     }
 }
