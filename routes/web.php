@@ -19,6 +19,9 @@ use App\Mail\ContactMail;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/dashboard', function () {
+    return view('layouts.dashboard');
+});
 
 // Route::get('/contact', function () {
 //     return view('contact');
@@ -39,4 +42,16 @@ Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< Updated upstream
 
+=======
+Route::resource('articles', 'ArticleController');
+Route::resource('categories', 'ArticleCategoryController');
+Route::resource('roles', 'RoleController');
+
+
+// 404 for undefined routes
+Route::any('/{page?}',function(){
+    return View::make('pages.error-pages.error-404');
+})->where('page','.*');
+>>>>>>> Stashed changes
