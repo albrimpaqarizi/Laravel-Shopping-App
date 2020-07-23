@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 
@@ -10,7 +10,7 @@
         </div>
         @endif
     </div>
-    <div class="col-sm-12 col-md-6 mx-auto">
+    <div class="col-sm-12 col-md-6 ">
         <h3 class="display-4">Roles</h3>
         <a style="margin: 19px;" href="{{ route('roles.create')}}" class="btn btn-primary">New role</a>
         <table class="table table-striped">

@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Role;
 
 class RegisterController extends Controller
 {
@@ -64,11 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $role = Role::where('role_name', 'user')->first();
+        $role_id = $role != null ? $user->id : null;
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+<<<<<<< Updated upstream
             'role_id' => $data['role_id'] ?? 2,
+=======
+            'role_id' => $role_id ,
+>>>>>>> Stashed changes
         ]);
     }
 }

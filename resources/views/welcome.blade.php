@@ -82,9 +82,10 @@
 
         @if (Route::has('login'))
         <div class="top-right links">
+            {{-- <a href="{{ url('/dashboard') }}">Admin</a>
             <a href="{{ url('/articles') }}">Articles</a>
             <a href="{{ url('/categories') }}">Categories</a>
-            <a href="{{ url('/roles') }}">Roles</a>
+            <a href="{{ url('/roles') }}">Roles</a> --}}
             @auth
             <a href="{{ url('/home') }}">Home</a>
             @else
