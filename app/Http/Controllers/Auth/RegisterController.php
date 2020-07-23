@@ -73,11 +73,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-<<<<<<< Updated upstream
-            'role_id' => $data['role_id'] ?? 2,
-=======
             'role_id' => $role_id ,
->>>>>>> Stashed changes
+            // 'role_id' => $data['role_id'] ?? 2,
         ]);
     }
 }

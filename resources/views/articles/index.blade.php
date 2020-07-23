@@ -10,9 +10,11 @@
         </div>
         @endif
     </div>
-    <div class="col-sm-12 col-md-10 mx-auto">
-        <h3 class="display-4">Articles</h3>
-        <a style="margin: 19px;" href="{{ route('articles.create')}}" class="btn btn-primary">New article</a>
+    <div class="col-sm-12 col-md-10 ">
+        <div class="d-flex justify-content-between">
+            <h3 class="display-4 d-inline">Articles</h3>
+            <a style="margin: 19px;" href="{{ route('articles.create')}}" class="btn btn-success">New article</a>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -36,10 +38,9 @@
                     <td class=" w-50">{{$article->description}}</td>
                     <td>{{$article->price}}</td>
                     <td>{{$article->inStock}}</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <a href="{{ route('articles.edit',$article->id)}}" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
+
                         <form action="{{ route('articles.destroy', $article->id)}}" method="post">
                             @csrf
                             @method('DELETE')

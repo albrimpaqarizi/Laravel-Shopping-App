@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
             'role_name' => 'admin',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('roles')->insert([
+            'id' => '2',
+            'role_name' => 'user',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
 
         DB::table('users')->insert([
             'name' => 'Admin',
