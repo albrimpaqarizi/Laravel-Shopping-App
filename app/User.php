@@ -24,6 +24,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
+    public function hasRole($role) 
+    {
+        return $this->role_id == $role;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

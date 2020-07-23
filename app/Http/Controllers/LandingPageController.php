@@ -18,11 +18,4 @@ class LandingPageController extends Controller
             'categorires' => $categories
         ]);
     }
-
-    public function show($id)
-    {
-        $product = Article::find($id);
-
-        return view('articles.show')->with('product', $product);
-    }
 }

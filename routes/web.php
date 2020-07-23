@@ -31,7 +31,12 @@ Route::post('/contact', 'ContactController@send');
 
 Auth::routes();
 
+Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
+    Route::resource('articles', 'ArticleController');
+    Route::resource('categories', 'ArticleCategoryController');
+    Route::resource('roles', 'RoleController');
+});
+
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('articles', 'ArticleController');
-Route::resource('categories', 'ArticleCategoryController');
-Route::resource('roles', 'RoleController');
+
