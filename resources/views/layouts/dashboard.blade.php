@@ -1,33 +1,28 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Admin Laravel Dashboard</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="_token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
 
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- plugin css -->
     <link href="{{ asset('assets/plugins/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
     <!-- end plugin css -->
 
-    @stack('plugin-styles')
-
-    <!-- common css -->
-    <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
-    <!-- end common css -->
-
-    @stack('style')
 </head>
 
-<body data-base-url="{{url('/')}}">
+<body>
 
     <div class="container-scroller" id="app">
         @include('dashboard.header')
@@ -46,22 +41,6 @@
 
     <!-- base js -->
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
-    <!-- end base js -->
-
-    <!-- plugin js -->
-    @stack('plugin-scripts')
-    <!-- end plugin js -->
-
-    <!-- common js -->
-    {{-- <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script> --}}
-    <!-- end common js -->
-
-    @stack('custom-scripts')
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 
@@ -10,14 +10,17 @@
         </div>
         @endif
     </div>
-    <div class="col-sm-12 col-md-6 mx-auto">
-        <h3 class="display-4">Categories</h3>
-        <a style="margin: 19px;" href="{{ route('categories.create')}}" class="btn btn-primary">New category</a>
+    <div class="col-sm-12 col-md-6 ">
+        <div class="d-flex justify-content-between">
+            <h3 class="display-4 d-inline">Categories</h3>
+            <a style="margin: 19px;" href="{{ route('categories.create')}}" class="btn btn-success">New category</a>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <td>ID</td>
                     <td>Category Name</td>
+                    <td>Created at</td>
                     <td colspan=2>Actions</td>
                 </tr>
             </thead>
@@ -26,10 +29,10 @@
                 <tr>
                     <td>{{$category->id}}</td>
                     <td>{{$category->category_name}}</td>
-                    <td>
+                    <td>{{$category->created_at}}</td>
+                    <td class="d-flex justify-content-around">
                         <a href="{{ route('categories.edit',$category->id)}}" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
+
                         <form action="{{ route('categories.destroy', $category->id)}}" method="post">
                             @csrf
                             @method('DELETE')
