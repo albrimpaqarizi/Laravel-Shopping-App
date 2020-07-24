@@ -43,15 +43,3 @@ Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
-// Route::resource('articles', 'ArticleController');
-// Route::resource('categories', 'ArticleCategoryController');
-// Route::resource('roles', 'RoleController');
-
-
-// 404 for undefined routes
-Route::any('/{page?}',function(){
-    return View::make('pages.error-pages.error-404');
-})->where('page','.*');
-=======
->>>>>>> df903b2e16c5017a14e7d7fcdcab4b84414e3376
