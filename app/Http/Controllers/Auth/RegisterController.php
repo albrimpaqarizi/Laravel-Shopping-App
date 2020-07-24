@@ -32,6 +32,13 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        if (auth()->user()->role_id == 1) {
+            return '/dashboard';
+        }
+        return '/home';
+    }
 
     /**
      * Create a new controller instance.
@@ -40,7 +47,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     /**
@@ -66,18 +73,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $role = Role::where('role_name', 'user')->first();
-        $role_id = $role != null ? $user->id : null;
+        // $role = Role::where('role_name', 'user')->first();
+        // $role_id = $role != null ? $user->id : null;
         
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-<<<<<<< Updated upstream
             'role_id' => $data['role_id'] ?? 2,
-=======
-            'role_id' => $role_id ,
->>>>>>> Stashed changes
         ]);
     }
 }

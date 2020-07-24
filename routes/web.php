@@ -38,20 +38,17 @@ Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
     Route::resource('articles', 'ArticleController');
     Route::resource('categories', 'ArticleCategoryController');
     Route::resource('roles', 'RoleController');
+    Route::resource('users', 'UserController');
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< Updated upstream
-
-=======
-Route::resource('articles', 'ArticleController');
-Route::resource('categories', 'ArticleCategoryController');
-Route::resource('roles', 'RoleController');
+// Route::resource('articles', 'ArticleController');
+// Route::resource('categories', 'ArticleCategoryController');
+// Route::resource('roles', 'RoleController');
 
 
 // 404 for undefined routes
 Route::any('/{page?}',function(){
     return View::make('pages.error-pages.error-404');
 })->where('page','.*');
->>>>>>> Stashed changes
