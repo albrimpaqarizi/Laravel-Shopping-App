@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\ArticleCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $products = Article::all();
+        $categories = ArticleCategory::all();
+
+        return view('pages.shop')->with([
+            'products' => $products,
+            'categorires' => $categories
+        ]);
     }
 }

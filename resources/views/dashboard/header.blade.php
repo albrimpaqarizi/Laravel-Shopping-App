@@ -7,60 +7,13 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
         </button>
-        <ul class="navbar-nav navbar-nav-left header-links">
-            <li class="nav-item dropdown d-none d-lg-flex">
-                <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown"
-                    aria-expanded="false"> Quick Links </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown pt-3" aria-labelledby="quickDropdown">
-                    <a href="#" class="dropdown-item">Schedule <span class="badge badge-primary ml-1">New</span></a>
-                    <a href="#" class="dropdown-item"><i class="mdi mdi-elevation-rise"></i>Reports</a>
-                    <a href="#" class="dropdown-item"><i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
-                </div>
+        <ul class="navbar-nav navbar-nav-left ">
+            <li class="nav-item ">
+                <a href="{{ url('/') }}" class="nav-link">Home page </a>
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="mdi mdi-file-outline"></i>
-                    <span class="count">7</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
-                    aria-labelledby="messageDropdown">
-                    <a class="dropdown-item py-3">
-                        <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                        <span class="badge badge-pill badge-primary float-right">View all</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ url('assets/images/faces/face2.jpg') }}" alt="image"
-                                class="img-sm profile-pic"> </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                            <p class="font-weight-light small-text"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ url('assets/images/faces/face3.jpg') }}" alt="image"
-                                class="img-sm profile-pic"> </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                            <p class="font-weight-light small-text"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ url('assets/images/faces/face4.jpg') }}" alt="image"
-                                class="img-sm profile-pic"> </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                            <p class="font-weight-light small-text"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                </div>
-            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-toggle="dropdown">
@@ -105,8 +58,8 @@
             <li class="nav-item dropdown d-none d-xl-inline-block">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
                     aria-expanded="false">
-                    <span class="profile-text d-none d-md-inline-flex">Richard V.Welsh !</span>
-                    <img class="img-xs rounded-circle" src="{{ url('assets/images/faces/face1.jpg') }}"
+                    <span class="profile-text d-none d-md-inline-flex"> {{ Auth::user()->name }} </span>
+                    <img class="img-xs rounded-circle" src="{{ url('storage/', Auth::user()->image) }}"
                         alt="Profile image"> </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <a class="dropdown-item p-0">
@@ -123,10 +76,19 @@
                             </div>
                         </div>
                     </a>
-                    <a class="dropdown-item mt-2"> Manage Accounts </a>
+                    <a class="dropdown-item mt-2" href="{{ route('profiles.edit',Auth::user()->id ) }}"> Manage
+                        Accounts
+                    </a>
                     <a class="dropdown-item"> Change Password </a>
                     <a class="dropdown-item"> Check Inbox </a>
-                    <a class="dropdown-item"> Sign Out </a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>

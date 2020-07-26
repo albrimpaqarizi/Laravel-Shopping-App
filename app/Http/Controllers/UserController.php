@@ -75,19 +75,53 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
             'role_id'=>'required',
         ]);
 
         $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
+        $user->name = $user->name;
+        $user->email = $user->email;
         $user->role_id = $request->get('role_id');
 
         $user->save();
         return redirect('/users')->with('success', 'User updated!');
     }
+
+    // public function editManage($id)
+    // {
+    //     $user = User::find($id);
+    //     return view('manage', compact('user')); 
+    // }
+
+    // public function updateManage(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'name'=>'required',
+    //         'email'=>'required|email',
+    //         'city'=>'required',
+    //         'age'=>'required',
+    //         'image' => 'file|image|mimes:jpeg,png,gif,jpg|max:2048',
+    //     ]);
+
+    //     $user = User::find($id);
+    //     $user->name = $request->get('name');
+    //     $user->email = $request->get('email');
+    //     $user->city = $request->get('city');
+    //     $user->age = $request->get('age');
+       
+    //     if($request->hasFile('image')){
+    //         // Storage::delete($user->image);
+    //         $file = $request->file('image');
+    //         $fileName = time().'.'.$file->getClientOriginalName();
+    //         $filePath = $file->store('profile');
+    //         $user->image = $filePath;
+    //     } else {
+    //         $user->image;
+    //     }
+
+    //     $user->save();
+    //     return redirect('/')->with('success', 'User updated!');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -98,7 +132,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
+        $image_path = $user->image;
+        Storage::delete($image_path);
         $user -> delete();
 
         return redirect('/users') ->with('success','User deleted!');

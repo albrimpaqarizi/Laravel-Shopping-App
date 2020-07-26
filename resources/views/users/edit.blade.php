@@ -8,8 +8,7 @@
                 <div class="card-header">{{ __('Edit a User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user->id) }}"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf
 
@@ -18,7 +17,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ $user->name }}" required autocomplete="name">
+                                    name="name" value="{{ $user->name }}" required autocomplete="name" disabled>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -33,7 +32,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ $user->email }}" required autocomplete="email">
+                                    name="email" value="{{ $user->email }}" required autocomplete="email" disabled>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -44,8 +43,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role_id"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                            <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
                                 <select name="role_id" id="role_id"

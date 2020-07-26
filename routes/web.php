@@ -16,20 +16,13 @@ use App\Mail\ContactMail;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-
-Route::get('/contact','ContactController@index');
-Route::get('/','LandingPageController@index');
-
-Route::post('/contact', 'ContactController@send');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
+Route::resource('/contact','ContactController');
+Route::get('/shop','HomeController@index');
 
 Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
     Route::get('/dashboard', function () {
@@ -40,6 +33,5 @@ Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
 });
+Route::resource('profiles', 'UserManageController');
 
-
-Route::get('/home', 'HomeController@index')->name('home');

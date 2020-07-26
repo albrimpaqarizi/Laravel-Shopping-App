@@ -9,7 +9,7 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-controls="basic-ui">
                 <i class="menu-icon mdi mdi-table"></i>
-                <span class="menu-title">Table UI</span>
+                <span class="menu-title">Tables</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse " id="basic-ui">
@@ -30,12 +30,6 @@
             </div>
         </li>
 
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ url('/charts/chartjs') }}">
-                <i class="menu-icon mdi mdi-chart-line"></i>
-                <span class="menu-title">Charts</span>
-            </a>
-        </li>
         <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#user-pages" aria-controls=" user-pages">
                 <i class="menu-icon mdi mdi-lock-outline"></i>
