@@ -40,6 +40,10 @@ class PaymentController extends Controller
             ]);
             $order->save();
             
+            $article = Article::find($request->get('articleId'));
+            $article->inStock -= 1;
+            $article->update();
+
             return redirect()->route('shop.index')->with('success_message', 'Thank you!');
         } catch (CardErrorException $e) {
             return back()->withErrors('Error! ' . $e->getMessage());
