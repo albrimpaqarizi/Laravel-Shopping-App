@@ -1,17 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
-    <div class="search" style="width:100%; margin:20px;">
-        <form action="{{route('search')}}" method="GET" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="search">
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
-    </div>
-    <div class="row justify-content-center" >
-        
         <div class="col-md-8">
 
             @foreach ($products as $product)

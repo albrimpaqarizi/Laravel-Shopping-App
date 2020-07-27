@@ -24,6 +24,7 @@ Auth::routes();
 Route::resource('/contact','ContactController');
 Route::resource('shop','HomeController');
 Route::resource('orders','OrdersController');
+Route::get('/search','HomeController@search')->name('search');
 
 Route::middleware(['auth', 'can:accessCostumer'])->group(function() {
     Route::resource('payment','PaymentController');

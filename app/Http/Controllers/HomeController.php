@@ -30,4 +30,13 @@ class HomeController extends Controller
         $article = Article::find($id);
         return view('pages.show', compact('article')); 
     }
+
+    public function search(Request $request)
+    {   
+        $products = Article::where('title','LIKE','%'.$request->search."%")->get();
+        return view('pages.search')->with([
+            'products' => $products,
+            'search' => $request->search,
+        ]);
+    }
 }
