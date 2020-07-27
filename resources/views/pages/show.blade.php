@@ -50,9 +50,11 @@
             <h2 class="product-title">{{ $article->title }}</h2>
             <span class="product-price">€ {{ $article->price }}</span>
             <div>
+            <a href="{{route('payment.show', $article->id)}}">
                 <button class="btn btn-success">
                     Buy Now
                 </button>
+              </a>  
             </div>
             <div>
                 <button class="btn btn-primary">

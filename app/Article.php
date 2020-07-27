@@ -19,4 +19,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\ArticleCategory');
     }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 }

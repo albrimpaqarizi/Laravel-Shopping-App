@@ -19,7 +19,7 @@
                             <div class="col-md-6">
                                 <input id="role_name" type="text"
                                     class="form-control @error('role_name') is-invalid @enderror" name="role_name"
-                                    value="{{ $category->role_name }}" required autocomplete="role_name">
+                                    value="{{ $role->role_name }}" required autocomplete="role_name">
 
                                 @error('role_name')
                                 <span class="invalid-feedback" role="alert">

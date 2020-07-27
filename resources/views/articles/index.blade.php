@@ -30,7 +30,7 @@
             <tbody>
                 @foreach($articles as $article)
                 <tr>
-                    <td> <img style="width: 50%" src="{{asset('storage/' .$article->image )}}" class="img-responsive"
+                    <td> <img  src="{{asset('storage/' .$article->image )}}" class="img-responsive"
                             alt="{{$article->image}}">
                     </td>
                     <td>{{$article->title}}</td>

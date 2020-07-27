@@ -22,7 +22,13 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('/contact','ContactController');
-Route::get('/shop','HomeController@index');
+Route::resource('shop','HomeController');
+Route::resource('orders','OrdersController');
+
+Route::middleware(['auth', 'can:accessCostumer'])->group(function() {
+    Route::resource('payment','PaymentController');
+});
+
 
 Route::middleware(['auth' , 'can:accessAdmin'])->group(function() {
     Route::get('/dashboard', function () {

@@ -33,7 +33,7 @@
                             <div class="d-flex flex-column align-items-center">
                                 <h3>Welcome to Laravel E-Commerce</h3>
                                 <img src="{{ asset('storage/images/wp.jpg') }}" alt="img" class="img-responsive">
-                                <a href="/"><button class="btn btn-primary mt-4">Shop Now</button></a>
+                            <a href="{{route('shop.index')}}"><button class="btn btn-primary mt-4">Shop Now</button></a>
                             </div>
                         </div>
 

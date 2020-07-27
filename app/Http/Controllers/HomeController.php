@@ -24,4 +24,10 @@ class HomeController extends Controller
             'categorires' => $categories
         ]);
     }
+
+    public function show($id)
+    {
+        $article = Article::find($id);
+        return view('pages.show', compact('article')); 
+    }
 }
