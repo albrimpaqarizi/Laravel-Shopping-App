@@ -31,9 +31,9 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
                             <div class="col-md-6">
-                                <select name="category_id" id="category_id"
+                                <select name="category_id" id="category_id" required value=""
                                     class="custom-select @error('category_id') is-invalid @enderror">
-                                    <option selected>Select category</option>
+                                    <option value="" selected>Select category</option>
                                     @foreach ($categories as $category)
                                     <option value={{ $category->id  }}> {{ $category->category_name}} </option>
                                     @endforeach

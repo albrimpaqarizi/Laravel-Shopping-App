@@ -38,7 +38,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'role_id'=>'required'
+        ]);
+
+        $user = User::create($storeData);
+        return redirect('/users')->with('success', 'User has been saved!');
     }
 
     /**
@@ -49,7 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // $category = ArticleCategory::find($id);
+        // return view('articles.categories.show', compact('category'));
     }
 
     /**
@@ -133,7 +142,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $image_path = $user->image;
-        Storage::delete($image_path);
+        if($image_path != null) {
+            Storage::delete($image_path);
+        }
         $user -> delete();
 
         return redirect('/users') ->with('success','User deleted!');
